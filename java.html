@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        
+
+    </title>
+</head>
+<style type="text/css" >
+    .hide-replaced.ws-inputreplace {
+    display: none !important;
+}
+div.ws-invalid input {
+    border-color: #c88;
+}
+.ws-invalid label {
+    color: #933;
+}
+div.ws-success input {
+    border-color: #8c8;
+}
+form {
+    margin: 10px auto;
+    margin-top:50px;
+    width: 300px;
+    min-width: 49.6154em;
+    border: 1px solid #000;
+    padding: 10px;
+    
+}
+.form-row {
+    padding: 5px 10px;
+    margin: 5px 0;
+}
+label {
+    display: block;
+    margin: 3px 0;
+}
+.form-row input {
+    width: 220px;
+    padding: 3px 1px;
+    border: 1px solid #ccc;
+    box-shadow: none;
+}
+.form-row input[type="checkbox"] {
+    width: 15px;
+}
+.date-display {
+    display: inline-block;
+    min-width: 200px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    min-height: 1em;
+}
+.show-inputbtns .input-buttons {
+    display: inline-block;
+}
+input[type=text], 
+select 
+{
+   width: 400px;
+    padding: 12px 20px;
+    margin: 8px 0;
+ display: inline-block;
+border: 1px solid #ccc;
+    box-sizing: border-box;
+     background-color:white;
+    
+}
+input[type=email], 
+select 
+{
+   width: 400px;
+    padding: 12px 20px;
+    margin: 8px 0;
+ display: inline-block;
+border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color:white;
+}
+input[type=tel], 
+select 
+{
+   width: 400px;
+    padding: 12px 20px;
+    margin: 8px 0;
+ display: inline-block;
+border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color:white;
+}
+input[type=date], 
+select 
+{
+   width: 400px;
+    padding: 12px 20px;
+    margin: 8px 0;
+ display: inline-block;
+border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color:white;
+}
+input[type=submit]
+ {
+
+    width: 200px;
+
+    background-color: #4CAF50;
+
+    color: white;
+    
+ padding: 14px 20px;
+
+    margin: 8px 0;
+
+    border: none;
+
+    border-radius: 4px;
+
+   
+}
+
+
+input[type=submit]:hover
+ {
+
+    background-color:#45a049;
+
+}
+legend {
+    background-color: #000;
+    color: #fff;
+    padding: 3px 6px;
+}
+
+.output {
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input {
+    margin: 1rem 0;
+    width: 60%;
+}
+
+label {
+    display: inline-block;
+    font-size: .8rem;
+    width: 20%;
+}
+
+input:invalid + span:after {
+    content: 'X';
+    font-weight: bold;
+    color: #f00;
+    padding-left: 5px;
+}
+
+input:valid + span:after {
+    content: 'Ok';
+    color: #26b72b;
+    padding-left: 5px;
+}
+
+</style>
+<body >
+<form class="ws-validate">
+<h2>
+
+<div class="sm" style="margin-left: 100px;">
+
+Name<br>
+<input id="fname" name="name" type="text" placeholder="First Name" required/>
+<span class="validity"></span><br>
+Middlename<br>
+<input id="mname" name="mname"  type="text" placeholder="Middle Name" required />
+<span class="validity"></span><br>
+
+
+Surname<br>
+<input id="sname" name="sname"  type="text" placeholder="Surname" required />
+<span class="validity"></span><br>
+
+
+Mobile Number<br>
+<input id="ph" name="phone" pattern="[0-9]{10}" type="tel" placeholder="1234567890" required />
+<span class="validity"></span><br>
+
+
+Email Id<br>
+<input id="email" name="email" required="" type="email" placeholder="Email ID"required />
+<span class="validity"></span><br>
+
+
+Address<br>
+<input id="add" style="height: 100px; width: 400px;" name="" type="text" placeholder="Address"required />
+<span class="validity"></span><br>
+
+Start journey<br>
+<div class="form-row"><input id="ad" class="hide-replaced"type="date"  required/>
+    <span class="validity"></span><br>
+
+</div>
+<div class="form-row"></div>
+End journey<br>
+<div class="form-row"><input id="dd" class="hide-replaced"  type="date" onchange="validate()"required/>
+    <span class="validity"></span><br>
+
+</div>
+<label id="label" ></label>
+&nbsp;
+<div class="form-row"><input type="submit"  onclick="validate()"/></div>
+</div>
+</form>
+</h2>
+<script type="text/javascript">
+    function validate(){
+
+
+                            
+         var arr = document.getElementById("ad").value;
+        var dep = document.getElementById("dd").value;
+        var CurrentDate = new Date();
+
+        if(arr>dep){
+                           alert("You cant leave before you reach!");
+                        }
+
+            arr = new Date(arr);
+
+            if(arr < CurrentDate){
+                alert('Given date is before the current date.');
+            }
+        else{
+                 var date_diff_indays = function(date1, date2) {
+            dt1 = new Date(date1);
+           dt2 = new Date(date2);
+            return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+            }
+            var cal = date_diff_indays(arr, dep);
+            document.getElementById("label").innerHTML ="Your journey is of "+cal+"  "+"days" ;  
+        }
+
+             }      
+
+
+/*    webshim.setOptions('forms-ext', {
+    replaceUI: 'auto',
+    types: 'date',
+    date: {
+        startView: 2,
+        inlinePicker: true,
+        classes: 'hide-inputbtns'
+    }
+});
+webshim.setOptions('forms', {
+    lazyCustomMessages: true
+});
+//start polyfilling
+webshim.polyfill('forms forms-ext');
+
+//only last example using format display
+$(function () {
+    $('.format-date').each(function () {
+        var $display = $('.date-display', this);
+        $(this).on('change', function (e) {
+            //webshim.format will automatically format date to according to webshim.activeLang or the browsers locale
+            var localizedDate = webshim.format.date($.prop(e.target, 'value'));
+            $display.html(localizedDate);
+        });
+    });
+});
+
+
+*/
+
+</script>
+</body>
+</html>
